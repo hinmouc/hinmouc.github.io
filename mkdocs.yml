@@ -20,7 +20,7 @@ nav:
   - Me: index.md
   - Blog:
       - Latex: research/LaTeX.md
-      - Evaluate for image fusion: research/Evaluate_IF.md
+      - Evaluate for Image Fusion: research/Evaluate_IF.md
   - about: about.md
 
 
