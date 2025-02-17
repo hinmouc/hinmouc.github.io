@@ -21,8 +21,7 @@ nav:
   - Blog:
       - Latex: research/LaTeX.md
       - Evaluate for image fusion: research/Evaluate_IF.md
-  - other: about.md
-  - about: latex.md
+  - about: about.md
 
 
 

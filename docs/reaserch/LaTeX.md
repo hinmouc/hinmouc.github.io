@@ -1,6 +1,7 @@
 ---
 title: LaTeX common symbols and use
 ---
+
 [//]: # (  <span style="color: #589bd5; font-weight: bold;">LaTeX symbols and Use</span>)
 
 <h1 style="text-align: center;">
