@@ -69,7 +69,7 @@
 - :octicons-bookmark-16:{ .lg .middle } __PAPERS__
 
     ---
-    - [Evaluate for image fusion](research/Evaluate_IF.md)
+    - [Evaluate for Image Fusion](research/Evaluate_IF.md)
 
 </div>
 
