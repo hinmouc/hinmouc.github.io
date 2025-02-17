@@ -64,7 +64,7 @@
 
     ---
 
-    - [LaTex: Symbol and Use](research/LaTeX.md)
+    - [LaTex: Symbol and Use](research/latex.md)
     
 - :octicons-bookmark-16:{ .lg .middle } __PAPERS__
 

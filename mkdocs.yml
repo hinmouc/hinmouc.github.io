@@ -19,7 +19,7 @@ copyright: Copyright &copy;  CC BY-NC-SA 4.0 # 左下角的版权声明.
 nav:
   - Me: index.md
   - Blog:
-      - Latex: research/LaTeX.md
+      - Latex: research/latex.md
       - Evaluate for image fusion: research/Evaluate_IF.md
   - other: about.md
 
