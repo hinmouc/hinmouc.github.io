@@ -2,8 +2,9 @@
 title: Evaluate for image fusion
 ---
 
+[//]: # (  <span style="color: #589bd5; font-weight: bold;">Evaluate for Image Fusion</span>)
 <h1 style="text-align: center;">
-  <span style="color: #589bd5; font-weight: bold;">Evaluate for image fusion</span>
+  <span style="color: #1B365D; font-weight: bold;">Evaluate for Image Fusion</span>
 </h1>
 
 
@@ -13,7 +14,7 @@ title: Evaluate for image fusion
 
 图像融合是将来自不同来源的图像信息合成一幅图像的过程，目的是提高图像的质量和有效性。在图像融合研究中，评估融合结果的质量至关重要。为此，许多图像融合质量评估指标应运而生，帮助我们量化融合图像的优劣。
 
-<span style="color: hsl(9, 100%, 60%);">以下是一些定量评估指标的定义以及代码，请随意使用以下整理内容。</span>
+<span style="color: hsl(9, 100%, 60%);">这份博文是笔者学习过程中所总结的，包含多类评估指标的定义以及实现代码，请随意使用。</span>
 <span style="color: #589bd5;  font-weight: bold;">
 <a href="https://hinmouc.github.io/">
 More in @hinmouc

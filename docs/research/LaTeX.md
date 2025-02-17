@@ -15,14 +15,11 @@ title: LaTeX common symbols and use
 LaTeX 是一种强大的数学排版工具，在 **Markdown、Jupyter Notebook、Obsidian、Typora** 等支持 LaTeX 的环境中，我们可以使用 LaTeX 语法来编写数学公式。
 
 [//]: # (LaTeX 是一种强大的数学排版工具，它不仅可以为学术论文、报告以及其他专业文档提供高质量的排版支持，也为我们展示数学公式和符号提供了极为精确的控制。无论是在 Markdown、Jupyter Notebook、Obsidian、Typora 等支持 LaTeX 的环境中，还是在专业的学术出版物中，LaTeX 都发挥着不可或缺的作用。)
-这份笔记是我在学习和整理 LaTeX 过程中所收集和归纳的常用符号、命令以及排版技巧。
-<span style="color: hsl(9, 100%, 60%);">请随意使用以下笔记内容，它不仅仅是我个人的整理，也是希望能够帮助更多的 LaTeX 使用者在日常工作和学习中，快速高效地解决数学公式排版的需求。
-</span>
-<span style="color: #589bd5;  font-weight: bold;">
-<a href="https://hinmouc.github.io/">
-More in @hinmouc
-</a>
-</span>
+这份笔记是笔者在学习LaTeX 使用过程中所收集和归纳的常用符号、命令以及排版技巧，囊括内容非常全面，后续也将持续更新。
+<span style="color: #589bd5;  font-weight: bold;"><a href="https://hinmouc.github.io/">More in @hinmouc</a></span>
+
+[//]: # (<span style="color: hsl&#40;9, 100%, 60%&#41;;">请随意使用以下笔记内容，它不仅仅是我个人的整理，也是希望能够帮助更多的 LaTeX 使用者在日常工作和学习中，快速高效地解决数学公式排版的需求。)
+[//]: # (</span>)
 
 * * *
 
