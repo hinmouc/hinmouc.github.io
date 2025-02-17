@@ -22,7 +22,7 @@ nav:
       - Latex: research/LaTeX.md
       - Evaluate for image fusion: research/Evaluate_IF.md
   - other: about.md
-  - about: LaTeX.md
+  - about: latex.md
 
 
 
