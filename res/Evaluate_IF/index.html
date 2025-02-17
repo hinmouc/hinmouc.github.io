@@ -13,6 +13,10 @@
       
       
       
+        <link rel="prev" href="../LaTeX/">
+      
+      
+        <link rel="next" href="../../about/">
       
       
       <link rel="icon" href="../../image/github.png">
@@ -234,11 +238,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../res/LaTeX/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../LaTeX/" class="md-tabs__link">
           
   
     
@@ -337,8 +343,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -349,21 +357,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -375,7 +384,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Blog
@@ -389,7 +398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../res/LaTeX/" class="md-nav__link">
+      <a href="../LaTeX/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -408,10 +417,29 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../res/Evaluate_IF/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Evaluate for image fusion
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -421,6 +449,867 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preamble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preamble
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1information-theory-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.Information Theory-Based
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.Information Theory-Based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-entropy-en" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1) Entropy (EN)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) Entropy (EN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mutual-information-mi" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2) Mutual Information (MI)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(2) Mutual Information (MI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-normalized-mutual-information-nmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      (3) Normalized Mutual Information (NMI)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(3) Normalized Mutual Information (NMI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-feature-mutual-information-fmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      (4) Feature Mutual Information (FMI)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(4) Feature Mutual Information (FMI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-quality-assessment-based-on-fusion-qabf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (5) Quality Assessment Based on Fusion (Qabf)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(5) Quality Assessment Based on Fusion (Qabf)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-noise-based-fusion-performance-nabf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (6) Noise-Based Fusion Performance (Nabf)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(6) Noise-Based Fusion Performance (Nabf)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-nonlinear-correlated-information-entropy-q_ncie" class="md-nav__link">
+    <span class="md-ellipsis">
+      (7) Nonlinear Correlated Information Entropy (Q_ncie)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(7) Nonlinear Correlated Information Entropy (Q_ncie)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-phase-congruency-evaluation-qp" class="md-nav__link">
+    <span class="md-ellipsis">
+      (8) Phase Congruency Evaluation (Qp)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(8) Phase Congruency Evaluation (Qp)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2image-feature-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.Image Feature-Based
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.Image Feature-Based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-standard-deviation-sd" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1) Standard Deviation (SD)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) Standard Deviation (SD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-spatial-frequency-sf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2) Spatial Frequency (SF)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(2) Spatial Frequency (SF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-average-gradient-ag" class="md-nav__link">
+    <span class="md-ellipsis">
+      (3) Average Gradient (AG)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(3) Average Gradient (AG)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-edge-intensity-ei" class="md-nav__link">
+    <span class="md-ellipsis">
+      (4) Edge Intensity (EI)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(4) Edge Intensity (EI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4structural-similarity-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.Structural Similarity-Based
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.Structural Similarity-Based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-structural-similarity-index-measure-ssim" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1) Structural Similarity Index Measure (SSIM)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) Structural Similarity Index Measure (SSIM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-multiscale-structural-similarity-index-ms-ssim" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1) Multiscale Structural Similarity Index (MS-SSIM)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) Multiscale Structural Similarity Index (MS-SSIM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-feature-similarity-index-fsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      (3) Feature Similarity Index (FSIM)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(3) Feature Similarity Index (FSIM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4correlation-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.Correlation-Based
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.Correlation-Based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-correlation-coefficient-cc" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1) Correlation Coefficient (CC)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) Correlation Coefficient (CC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sum-of-the-correlations-of-differences-scd" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2) Sum of the Correlations of Differences (SCD)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(2) Sum of the Correlations of Differences (SCD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-nonlinear-correlation-coefficient-ncc" class="md-nav__link">
+    <span class="md-ellipsis">
+      (3) Nonlinear Correlation Coefficient (NCC)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(3) Nonlinear Correlation Coefficient (NCC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5human-perception-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.Human Perception-Based
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.Human Perception-Based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-visual-information-fidelity-for-fusion-viff" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1) The visual information fidelity for fusion (VIFF)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) The visual information fidelity for fusion (VIFF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-human-visual-perception-q_cb" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2) Human Visual Perception (\(Q_{CB}\))
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(2) Human Visual Perception (\(Q_{CB}\))">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6error-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.Error-Based
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.Error-Based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mean-square-error-mse" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1) Mean Square Error (MSE)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) Mean Square Error (MSE)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-peak-signal-to-noise-ration-psnr" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2) Peak signal to noise ration (PSNR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(2) Peak signal to noise ration (PSNR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formulas_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulas：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
