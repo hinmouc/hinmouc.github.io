@@ -12,12 +12,6 @@ repo_name: hinmouc.github.io # 右上角的名字
 
 # 版权声明
 copyright: Copyright &copy;  CC BY-NC-SA 4.0 # 左下角的版权声明.
-# 高级版权配置
-#extra:
-#  copyright:
-#    author: hinmouc
-#    year: 2025
-#    license: CC BY-NC-SA 4.0
 
 
 
@@ -25,8 +19,8 @@ copyright: Copyright &copy;  CC BY-NC-SA 4.0 # 左下角的版权声明.
 nav:
   - Me: index.md
   - Blog:
-      - latex: reaserch/LaTeX.md
-#      - test2: test/test2.md
+      - Latex: research/LaTeX.md
+      - Evaluate for image fusion: research/Evaluate_IF.md
   - other: about.md
 
 
@@ -35,13 +29,15 @@ nav:
 #[UI]
 theme:
    name: material
+   custom_dir: docs/
    font: false
      # font:
      #   text: JetBrains Mono
      #   code: Roboto Mono
      # font:
      #   text: Bitter
-#   logo: https://pic4.zhimg.com/80/v2-a0456a5f527c1923f096759f2926012f_1440w.webp
+   favicon: image/github.png      #网站logo
+   logo: image/flower1.png    #头像
 
    features:
      #导航相关
@@ -102,29 +98,10 @@ theme:
 
 
 extra:
-#  alternate:
-#    - name: 简体中文
-#      link: /
-#      # https://wcowin-work.translate.goog/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp
-#      lang: zh
-#    - name: English
-#      link: /en/
-#      # https://wcowin-work.translate.goog/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp
-#      lang: en
-#    - name: ZH-TW
-#      link: /ZH-TW/
-#      # https://wcowin-work.translate.goog/?_x_tr_sl=zh-CN&_x_tr_tl=zh-TW&_x_tr_hl=zh-CN&_x_tr_pto=wapp
-#      lang: zh-TW
   generator: false  #删除页脚显示“使用 MkDocs 材料制造”
   social:
-#    - icon: fontawesome/brands/twitter
-#      link: https://twitter.com/wcowin_
     - icon: fontawesome/brands/github
       link: https://github.com/hinmouc
-#    - icon: fontawesome/brands/bilibili
-#      link: https://space.bilibili.com/1407028951?spm_id_from=333.1007.0.0
-#    - icon: fontawesome/solid/paper-plane
-#      link: mailto:<hingmauchan@163.com> #联系方式
 
 plugins:
   - search
@@ -165,76 +142,15 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 
-#markdown_extensions:
-#  - abbr
-#  - attr_list
-#  - admonition
-#  - def_list
-#  - footnotes
-#  # - callouts
-#  - md_in_html
-#  - markdown.extensions.abbr # 支持Markdown文件上方自定义标题标签等
-#  - pymdownx.magiclink
-#  - pymdownx.caret
-#  - pymdownx.betterem
-#  - pymdownx.critic
-#  - pymdownx.details
-#  - pymdownx.inlinehilite
-#  - pymdownx.keys
-#  - pymdownx.mark
-#  - pymdownx.snippets
-#  - pymdownx.smartsymbols
-#  - pymdownx.tilde
-#
-#  - pymdownx.superfences:
-#      custom_fences:
-#        - name: mermaid
-#          class: mermaid
-#          format: !!python/name:pymdownx.superfences.fence_code_format
-#  - pymdownx.arithmatex:  # latex支持
-#      generic: true
-#  - toc:
-#      permalink: true # 固定标题位置为当前位置
-#  - pymdownx.highlight: # 代码块高亮
-#      anchor_linenums: true
-#      linenums: true # 显示行号
-#      # auto_title: true # 显示编程语言名称
-#  - pymdownx.emoji:
-#      emoji_index: !!python/name:material.extensions.emoji.twemoji
-#      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-#  - pymdownx.tabbed:
-#      alternate_style: true
-#  - pymdownx.tasklist:
-#      custom_checkbox: true
-
-#markdown_extensions:
-#  - abbr
-#  - pymdownx.caret
-#  - pymdownx.mark
-#  - pymdownx.tilde
-#  - md_in_html
-#  - pymdownx.arithmatex:  # latex支持
-#      generic: true
-#  - toc:
-#      permalink: true # 固定标题位置为当前位置
-#  - pymdownx.highlight: # 代码块高亮
-#      anchor_linenums: true
-#      # linenums: true # 显示行号
-#      # auto_title: true # 显示编程语言名称
-#  - pymdownx.inlinehilite
-#  - pymdownx.snippets
-#  - pymdownx.superfences
-#  - attr_list
-#  - pymdownx.emoji:
-#      emoji_index: !!python/name:materialx.emoji.twemoji
-#      emoji_generator: !!python/name:materialx.emoji.to_svg
-#  - pymdownx.superfences # 代码块高亮插件
-#  - meta # 支持Markdown文件上方自定义标题标签等
-
 extra_javascript:
   - javascripts/extra.js
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/view.js
+
+
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/link.css  #友链
+  - stylesheets/customize.css  #按钮圆角化
