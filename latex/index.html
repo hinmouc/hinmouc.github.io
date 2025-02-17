@@ -13,6 +13,8 @@
       
       
       
+        <link rel="prev" href="../about/">
+      
       
       
       <link rel="icon" href="../image/github.png">
@@ -271,9 +273,11 @@
         
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../LaTeX.md" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
     
@@ -475,10 +479,29 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../LaTeX.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    about
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -488,6 +511,720 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preamble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preamble
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-basci" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Basci
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Basci">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-inline-display-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Inline &amp; Display Mode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Inline & Display Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inline-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inline Formula
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display Formula
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-superscript-subscript" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Superscript &amp; Subscript
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Superscript & Subscript">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#superscript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Superscript
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscript
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-note-" class="md-nav__link">
+    <span class="md-ellipsis">
+      --Note--
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-equation-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Equation Environments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 Equation Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-equation-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. equation Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-align-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. align Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cases-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. cases Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-multline-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. multline Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-split-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. split Environment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-spacing-in-math-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Spacing in Math Mode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 Spacing in Math Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inline-text-in-math-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inline Text in Math Mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-using-latex-in-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 Using LaTeX in Markdown
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6 Test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-greek-letters" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Greek Letters.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Greek Letters.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lowercase-greek-letters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lowercase Greek Letters.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uppercase-greek-letters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uppercase Greek Letters.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-math-mode-accents" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Math Mode Accents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Math Mode Accents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-superscripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Superscripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-vector-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Vector Symbols
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-overline-underline" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Overline &amp; Underline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-math-constructs" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Math Constructs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Math Constructs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-exponents-and-subscripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Exponents and Subscripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-fractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Fractions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-radicals" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Radicals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-summation-and-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Summation and Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-limits-logarithms-and-trigonometric-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Limits, Logarithms, and Trigonometric Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-delimiters" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Delimiters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Delimiters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-standard-delimiters" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Standard Delimiters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-resizable-delimiters" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Resizable Delimiters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-absolute-value-and-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Absolute Value and Norm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-floor-and-ceiling-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Floor and Ceiling Functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-additional-delimiters" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Additional Delimiters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-variable-sized-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Variable-sized Symbols
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-binary-operationrelation-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Binary Operation/Relation Symbols
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Binary Operation/Relation Symbols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operators-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operators Symbols
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relations-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relations Symbols
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negated-relations-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      Negated Relations Symbols
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-arrow-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Arrow symbols
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 Arrow symbols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-arrows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Arrows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-and-hook-arrows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mapping and Hook Arrows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extended-arrows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extended Arrows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negated-arrows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Negated Arrows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-miscellaneous-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      9 Miscellaneous symbols
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-other-styles-math-mode-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      10 Other Styles (math mode only)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-font-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      11 Font sizes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11 Font sizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#math-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Math Mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-math-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      12 Math Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12 Math Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subscripts-and-superscripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subscripts and Superscripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fractions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radicals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radicals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sums-products-limits-and-logarithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sums, Products, Limits and Logarithms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigonometric-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trigonometric Functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-environmentexamples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Array environment,examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrices-and-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matrices and Arrays
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices and Arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-line-formula-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-line formula alignment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#groups-of-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Groups of equations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      LOADING
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#last" class="md-nav__link">
+    <span class="md-ellipsis">
+      Last
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
