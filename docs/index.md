@@ -57,7 +57,7 @@
 - __NEWS__
 
     ---
-    - [2025-07] One paper on infrared and visible image fusion is accepted by <strong>TCSVT 2025</strong> <strong>(<span style="color: #ca4349;">IF: 11.1</span>)</strong> <strong><span style="color: #257ac3;"><a href="PIVFusion/">Project</a></span></strong>.
+    - [2025-07] One paper on infrared and visible image fusion is accepted by <strong>TCSVT 2025</strong> <strong>(<span style="color: #ca4349;">IF: 11.1</span>)</strong>. <strong><span style="color: #257ac3;"><a href="PIVFusion/">Project Demo</a></span></strong>
     - [2025-05] One paper on low-light infrared and visible image fusion is accepted by <strong>EAAI 2025</strong> <strong>(<span style="color: #ca4349;">IF: 8</span>)</strong>.
 
 [//]: # (    ---)
