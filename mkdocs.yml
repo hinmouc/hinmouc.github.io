@@ -34,7 +34,7 @@ theme:
      #   code: Roboto Mono
      # font:
      #   text: Bitter
-   favicon: image/github.png      #网站logo
+   favicon: image/github_2.png      #网站logo
    logo: image/flower1.png    #头像
 
    features:
