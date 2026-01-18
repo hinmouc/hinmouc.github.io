@@ -43,18 +43,53 @@
 <!--            <div class="flex justify-between items-center h-16 lg:h-20">-->
 <!--                 核心调整1：降低高度 h-10 lg:h-12（原h-16 lg:h-20）-->
              <div class="flex justify-between items-center h-16 lg:h-19.5">
-                <div class="flex-shrink-0"><a href="https://hinmouc.github.io/" class="text-2xl lg:text-[1.6rem] font-bold text-[#494e52] hover:text-accent transition-colors duration-200 font-sans">
+                <div class="flex-shrink-0"><a href="https://hinmouc.github.io/" class="text-xl lg:text-2xl font-bold text-[#494e52] hover:text-accent transition-colors duration-200 font-sans">
                             QINGMAO CHEN
                     </a>
                 </div>
 
-                 <!-- 极简学术链接（右侧：更大字体） -->
-                <div class="flex items-center space-x-6 lg:space-x-8"><a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.3rem]">Google Scholar</a>
-                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">DBLP</a>
-                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">ORCID</a>
-                    <a href="https://hinmouc.github.io/" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">GitHub</a>
-                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">Resume</a>
+                  <!-- Desktop Navigation -->
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <ul class="nav-links flex space-x-8">
+                            <li> <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.3rem]">Google Scholar</a></li>
+                            <li><a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">DBLP</a></li>
+                            <li><a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">ORCID</a></li>
+                            <li><a href="https://hinmouc.github.io/" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">GitHub</a></li>
+                            <li><a href="desk/" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">Desk</a></li>
+                        </ul>
+                    </div>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button class="mobile-menu-btn p-2 rounded-md text-neutral-600 hover:text-primary">
+                        <img src="assets/menu.png" width="38">
+                    </button>
+                </div>
+            </div>
+
+              <!-- Mobile Menu -->
+            <div class="mobile-menu hidden lg:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-md border-b border-neutral-200 shadow-lg" id="mobile-menu">
+                <ul class="flex flex-col py-4 px-4 space-y-4">
+                    <li> <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.3rem]">Google Scholar</a></li>
+                    <li><a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">DBLP</a></li>
+                    <li><a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">ORCID</a></li>
+                    <li><a href="https://hinmouc.github.io/" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">GitHub</a></li>
+                    <li><a href="desk/" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">Desk</a></li>
+                </ul>
+            </div>
+
+
+                 <!-- 极简学术链接（右侧：更大字体） -->
+<!--                <div class="flex items-center space-x-6 lg:space-x-8">-->
+<!--                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.3rem]">Google Scholar</a>-->
+<!--                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">DBLP</a>-->
+<!--                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">ORCID</a>-->
+<!--                    <a href="https://hinmouc.github.io/" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">GitHub</a>-->
+<!--                    <a href="desk/" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">Desk</a>-->
+<!--                </div>-->
+
             </div>
         </div>
     </nav>
@@ -83,21 +118,21 @@
 
 <!--                         Research Interests -->
                          <div class="research-interests-card border-neutral-200 rounded-xl p-5 mb-6">
-                            <h3 class="font-serif font-bold text-lg text-primary mb-4 pb-2 border-b border-neutral-200 flex items-center">
+                            <h3 class="font-serif font-bold text-xl text-primary mb-4 pb-2 border-b border-neutral-200 flex items-center">
                                 Research Interests
                             </h3>
                             <ul class="space-y-3">
-                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
-                                    <span class=" text-[1rem] font-medium">Low-level Vision</span>
+                                <li class="pl-2 flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <span class=" text-lg font-medium">Low-level Vision</span>
                                 </li>
-                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
-                                    <span class="text-[1rem] font-medium">Image Processing</span>
+                                <li class="pl-2 flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <span class="text-lg font-medium">Image Processing</span>
                                 </li>
-                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
-                                    <span class="text-[1rem] font-medium">Image Fusion</span>
+                                <li class="pl-2 flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <span class="text-lg font-medium">Image Fusion</span>
                                 </li>
-                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
-                                    <span class="text-[1rem] font-medium">Image Restoration</span>
+                                <li class="pl-2 flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <span class="text-lg font-medium">Image Restoration</span>
                                 </li>
                             </ul>
                         </div>
