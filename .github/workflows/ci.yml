@@ -1,79 +1,73 @@
-name: Deploy MkDocs to Desk  # 更改了工作流名称，更明确
+name: Deploy Full Site (Resume + MkDocs)
+
 on:
   push:
     branches:
-      - master
-      - main
-    # 【关键修改】添加路径过滤器，只有Desk目录的内容变更才触发此流程
+      - main  # 当推送到 main 分支时触发
+    # 可选：路径过滤，只有以下路径变化才触发构建，提高效率
     paths:
-      - 'Desk/**'
-      - '.github/workflows/**'  # 工作流自身变更时也触发
+      - 'Desk/**'          # Desk目录下的任何文档变更
+      - 'index.html'       # 简历主页变更
+      - 'styles.css'       # 简历样式变更
+      - 'script.js'        # 简历脚本变更
+      - 'assets/**'        # 简历资源变更
+      - '.github/workflows/**'  # 工作流自身变更
 
 permissions:
-  contents: write
+  contents: write  # 允许工作流向 gh-pages 分支写入
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. 检出代码
-      - uses: actions/checkout@v4
-        # 【关键修改】移除 sparse-checkout，我们需要整个仓库来定位Desk目录
-        # with:
-        #   fetch-depth: 0
-        #   sparse-checkout: |
-        #     docs
-        #     includes
+      # 第一步：获取你的代码
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # 2. 配置Git用户（为后续commit准备）
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      # 3. 设置Python环境
-      - uses: actions/setup-python@v4
+      # 第二步：设置Python环境（用于MkDocs）
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: '3.x'
 
-      # 4. 缓存依赖（保留了你原来的缓存逻辑）
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-      - uses: actions/cache@v3
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-
-      # 5. 安装所有MkDocs插件（保持你原来的全套插件）
-      - name: Install Dependencies
-        # 【关键修改】所有操作在 Desk 目录下进行
-        working-directory: ./Desk
+      # 第三步：安装MkDocs及所有插件（在Desk目录内操作）
+      - name: Install MkDocs and Plugins
+        working-directory: ./Desk  # 进入Desk目录
         run: |
+          pip install mkdocs-material
+          # 以下是你原来的插件列表，保持安装
           pip install mkdocs-git-revision-date-localized-plugin
           pip install mkdocs-git-authors-plugin
           pip install mkdocs-git-committers-plugin-2
           pip install markdown-callouts
           pip install mkdocs-rss-plugin
           pip install pymdown-extensions
-          pip install mkdocs-material
           pip install --upgrade --force-reinstall mkdocs-material
-          # 注释掉的插件如需使用，请取消注释并确保在Desk目录有相应配置
 
-      # 6. 构建MkDocs网站
+      # 第四步：构建MkDocs文档站点（输出到 Desk/site 文件夹）
       - name: Build MkDocs Site
-        # 【关键修改】在Desk目录下构建，确保mkdocs.yml被正确读取
         working-directory: ./Desk
         run: mkdocs build
 
-      # 7. 部署到GitHub Pages的 /desk 目录
+      # 第五步（关键）：将根目录的简历文件复制到构建产物的根目录
+      - name: Copy Resume Files to Site Root
+        run: |
+          echo "正在将简历文件合并到发布包..."
+          # 复制简历的核心HTML、CSS、JS文件
+          cp ./index.html ./Desk/site/ 2>/dev/null || echo '提示：index.html 已处理。'
+          cp ./styles.css ./Desk/site/ 2>/dev/null || echo '提示：styles.css 已处理。'
+          cp ./script.js ./Desk/site/ 2>/dev/null || echo '提示：script.js 已处理。'
+          # 复制整个assets资源文件夹（如果存在）
+          cp -r ./assets ./Desk/site/ 2>/dev/null || echo '提示：assets 文件夹已处理。'
+          echo "简历文件合并完成。"
+
+      # 第六步（关键）：部署整个“Desk/site”文件夹到 gh-pages 分支的根目录
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # 【最关键修改】发布源是我们刚刚在Desk目录下构建好的 site 文件夹
+          # 发布源：包含了“简历”和“文档”的完整文件夹
           publish_dir: ./Desk/site
-          # 【最关键修改】部署到 gh-pages 分支下的 `desk` 文件夹
-          destination_dir: desk
-          # 不保留gh-pages分支上该目录的旧文件，确保干净
-          keep_files: false
+          # 目标：gh-pages 分支的根目录（这样简历才能在根路径访问）
+          # 重要：这里没有设置 destination_dir，表示部署到根目录
+          keep_files: false  # 部署前清理目标目录，保持干净
