@@ -1,44 +1,79 @@
-name: ci 
+name: Deploy MkDocs to Desk  # 更改了工作流名称，更明确
 on:
   push:
     branches:
-      - master 
+      - master
       - main
+    # 【关键修改】添加路径过滤器，只有Desk目录的内容变更才触发此流程
+    paths:
+      - 'Desk/**'
+      - '.github/workflows/**'  # 工作流自身变更时也触发
+
 permissions:
   contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. 检出代码
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          sparse-checkout: |
-            docs
-            includes
+        # 【关键修改】移除 sparse-checkout，我们需要整个仓库来定位Desk目录
+        # with:
+        #   fetch-depth: 0
+        #   sparse-checkout: |
+        #     docs
+        #     includes
+
+      # 2. 配置Git用户（为后续commit准备）
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # 3. 设置Python环境
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+
+      # 4. 缓存依赖（保留了你原来的缓存逻辑）
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - uses: actions/cache@v3
         with:
-          key: mkdocs-material-${ env.cache_id }
+          key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-git-revision-date-localized-plugin
-      - run: pip install mkdocs-git-authors-plugin
-      - run: pip install mkdocs-git-committers-plugin-2
-      - run: pip install markdown-callouts
-      # - run: pip install mkdocs-minify-plugin
-      - run: pip install mkdocs-rss-plugin
-      # - run: pip install jieba
-      # - run: pip install mkdocs-open-in-new-tab
-      - run: pip install pymdown-extensions
-      # - run: pip install mkdocs-glightbox
-      # - run: pip install "mkdocs-material[imaging]"
-      # - run: pip install mkdocs-statistics-plugin        
-      - run: pip install mkdocs-material 
-      - run: pip install --upgrade --force-reinstall mkdocs-material
-      - run: mkdocs gh-deploy --force
 
+      # 5. 安装所有MkDocs插件（保持你原来的全套插件）
+      - name: Install Dependencies
+        # 【关键修改】所有操作在 Desk 目录下进行
+        working-directory: ./Desk
+        run: |
+          pip install mkdocs-git-revision-date-localized-plugin
+          pip install mkdocs-git-authors-plugin
+          pip install mkdocs-git-committers-plugin-2
+          pip install markdown-callouts
+          pip install mkdocs-rss-plugin
+          pip install pymdown-extensions
+          pip install mkdocs-material
+          pip install --upgrade --force-reinstall mkdocs-material
+          # 注释掉的插件如需使用，请取消注释并确保在Desk目录有相应配置
+
+      # 6. 构建MkDocs网站
+      - name: Build MkDocs Site
+        # 【关键修改】在Desk目录下构建，确保mkdocs.yml被正确读取
+        working-directory: ./Desk
+        run: mkdocs build
+
+      # 7. 部署到GitHub Pages的 /desk 目录
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 【最关键修改】发布源是我们刚刚在Desk目录下构建好的 site 文件夹
+          publish_dir: ./Desk/site
+          # 【最关键修改】部署到 gh-pages 分支下的 `desk` 文件夹
+          destination_dir: desk
+          # 不保留gh-pages分支上该目录的旧文件，确保干净
+          keep_files: false
