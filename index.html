@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hinmouc</title>
+    <link rel="icon" href="assets/github.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!--    <link rel="stylesheet" href="styles.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: '#fefffe',       //背景色
+              foreground: '#0f172a',
+              accent: '#d4a562',           //主色调
+              primary: '#1e293b',
+              'accent-dark': '#b88a4d',
+              muted: '#64748b',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Crimson Text', 'serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body class="bg-background text-foreground antialiased font-sans">
+
+<!--     Top Navigation（修改后：极简顶栏）-->
+    <nav class="top-nav glass fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!--            <div class="flex justify-between items-center h-16 lg:h-20">-->
+<!--                 核心调整1：降低高度 h-10 lg:h-12（原h-16 lg:h-20）-->
+             <div class="flex justify-between items-center h-16 lg:h-19.5">
+                <div class="flex-shrink-0"><a href="https://hinmouc.github.io/" class="text-2xl lg:text-[1.6rem] font-bold text-[#494e52] hover:text-accent transition-colors duration-200 font-sans">
+                            QINGMAO CHEN
+                    </a>
+                </div>
+
+                 <!-- 极简学术链接（右侧：更大字体） -->
+                <div class="flex items-center space-x-6 lg:space-x-8"><a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.3rem]">Google Scholar</a>
+                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">DBLP</a>
+                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">ORCID</a>
+                    <a href="https://hinmouc.github.io/" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">GitHub</a>
+                    <a href="#" class="text-neutral-700 hover:text-accent transition-colors duration-200 font-sans text-[1.15rem] lg:text-[1.2rem]">Resume</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Grid -->
+    <main class="min-h-screen pt-20 lg:pt-28 pb-12">
+        <div class="w-full max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid-layout">
+                <!-- Left Column - Profile (Sticky) -->
+                <div class="profile-column">
+                    <div class="profile-card sticky top-24">
+                        <!-- Profile Image -->
+                        <div class="profile-image-container mb-6 mx-auto max-w-[180px]">
+                            <img src="assets/cat.gif" id="profile-img" alt="Your Name" class="w-full  h-auto rounded-xl border border-[0.25px] border-gray-200 p-[5px]">
+                        </div>
+
+                        <!-- Name and Title -->
+                        <div class="text-center mb-4">
+<!--                            <h1 class="text-2xl font-serif font-bold text-primary mb-2">Yixin Wei</h1>-->
+                            <h1 class="text-[1.55rem] text-[#494e52] font-bold text-primary mb-2">Qingmao Chen</h1>
+                            <p class="text-xl  text-[#494e52] font-medium mb-1">Master</p>
+                            <p class="text-lg text-[#494e52] font-medium mb-1">Nanchan, China</p>
+<!--                            <p class="text-lg text-[#494e52] font-medium mb-1">Research interest：</p>-->
+                        </div>
+
+
+<!--                         Research Interests -->
+                         <div class="research-interests-card border-neutral-200 rounded-xl p-5 mb-6">
+                            <h3 class="font-serif font-bold text-lg text-primary mb-4 pb-2 border-b border-neutral-200 flex items-center">
+                                Research Interests
+                            </h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <span class=" text-[1rem] font-medium">Low-level Vision</span>
+                                </li>
+                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <span class="text-[1rem] font-medium">Image Processing</span>
+                                </li>
+                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <span class="text-[1rem] font-medium">Image Fusion</span>
+                                </li>
+                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <span class="text-[1rem] font-medium">Image Restoration</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Column - Content -->
+                <div class="content-column space-y-12">
+
+                    <!-- About Section -->
+                    <section id="homepage" class="scroll-mt-24">
+                        <span id="about"></span> <!-- Anchor for About link -->
+                        <div class="section-header mb-2">
+                            <h2 class="text-3xl font-serif font-bold text-primary">About Me</h2>
+                        </div>
+                         <div class="title-divider"></div>
+                        <div class="prose max-w-none text-neutral-600 text-justify formal-font">
+                            <p class="mb-4">
+                                <p>
+                                    My name is <strong><font color="#4183c4">Qingmao Chen</font></strong> (pronounced "Hingmau Chan").
+                                </p>
+                                <p>
+                                   I am pursuing a MS degree in Computer Science and Technology.
+<!--                                    My current research interests are in computer vision and image processing.-->
+                                </p>
+                                <p>
+                                    My research focuses on image processing and computer vision, specifically addressing low-level visual tasks such as image enhancement and fusion.
+                                </p>
+<!--                                <p class="pl-2 mt-2 text-[1.2rem]  text-[#c71c31] italic">-->
+<!--                                   If you are interested in my research, feel free to contact me via email.-->
+<!--                                </p>-->
+                            </p>
+
+                        </div>
+                    </section>
+
+
+
+                    <!-- News Section -->
+                    <section id="latest-news" class="scroll-mt-24">
+                        <div class="section-header mb-2">
+                            <h2 class="text-3xl font-serif font-bold text-primary">News</h2>
+                        </div>
+                         <div class="title-divider"></div>
+                        <div id="news-container" class="news-list space-y-4">
+                            <ul class="space-y-3 list-disc pl-5">
+                                <li><p>[2025-07] One paper on infrared and visible image fusion is accepted by <strong>IEEE TCSVT</strong>.</p></li>
+                                <li><p>[2025-05] One paper on low-light infrared and visible image fusion is accepted by <strong>EAAI</strong>.</p></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Selected Publications -->
+                    <section id="Selected Publications" class="scroll-mt-24">
+                        <div class="section-header mb-2">
+                            <h2 class="text-3xl font-serif font-bold text-primary">Selected Publications</h2>
+                        </div>
+                         <div class="title-divider"></div>
+                        <div id="news-container_pub" class="news-list space-y-4">
+                            <style type="text/css">
+                                /*a { color: #4183c4; text-decoration:none !important; }*/
+                                /*a { color: #1772d0; text-decoration:none !important; }*/
+                                a:focus, a:hover { color: #f09228; text-decoration:none !important; }
+                                .links { display:flex; align-items:center; gap:8px; margin-top: 4px; flex-wrap: wrap; }
+                                /*.links .label { color:#667085; }*/
+                                .pill { display:inline-block; padding:4px 10px; border-radius:999px; background:#f2f4f7; text-decoration:none; font-size:14px; }
+                                .pill:hover { background:#e6e9ef; }
+                            </style>
+
+                                <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+                                <tbody>
+                                <tr onmouseout="PIVFusion" onmouseover="PIVFusion()">
+                                    <td width="40%" height="100%">
+                                        <img src="assets/publications/PIVFusion.png">
+                                    </td>
+                                    <td width="65%">
+                                        <span class="text-[1.15rem]  text-[#1772d0]  font-bold">
+                                            <a href="https://ieeexplore.ieee.org/document/11078301">
+                                                    Perceptual Transform Fusion of Infrared and Visible Images
+                                            </a>
+                                        </span>
+                                        <br>
+                                        Dingli Hua, <strong>Qingmao Chen</strong>, Zhiliang Wu,Yifan Zuo, Wenying Wen and Yuming Fang.
+                                        <br>
+                                        <em>IEEE Transactions on Circuits and Systems for Video Technology</em>, vol.35(12), pp.11935-11949, 2025.
+                                        <br>
+
+                                        <div class="links">
+                                                <span class="label">Link:</span>
+                                                <span class="text-[#1772d0]  font-bold"><a class="pill" href="PIVFusion">Project</a></span>
+                                                |
+                                                <span class="text-[#1772d0]  font-bold"><a class="pill" href="https://ieeexplore.ieee.org/document/11078301">Paper</a></span>
+                                                |
+                                                 <span class="text-[#1772d0]  font-bold"><a class="pill" href="https://github.com/hinmouc/PIVFusion">Code</a></span>
+                                            </div>
+                                    </td>
+                                </tr>
+                                <tr onmouseout="LIVFusion" onmouseover="LIVFusion()">
+                                    <td width="40%" height="100%">
+                    <!--                <td width="1280">-->
+                                        <img src="assets/publications/LIVFusion.png">
+                                    </td>
+                                    <td valign="top" width="65%">
+                                        <span class="text-[1.12rem]  text-[#1772d0]  font-bold">
+                                            <a href="https://doi.org/10.1016/j.engappai.2025.111123">
+                                                    LIVFusion: Luminance-optimized Fusion of Infrared and Visible Images with Wavelet Transformer
+                                            </a>
+                                        </span>
+                                        <br>
+                                        Dingli Hua, <strong>Qingmao Chen</strong>, Wenying Wen and Haonan Luo.
+                                        <br>
+                                        <em>Engineering Applications of Artificial Intelligence,</em> Vol. 156, Part B, 111113, 2025.
+                                        <br>
+                                        <div class="links">
+                                             <span class="label">Link:</span>
+                                                 <span class="text-[#1772d0]  font-bold"><a class="pill" href="https://doi.org/10.1016/j.engappai.2025.111123">Paper</a></span>
+                                              </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            </table>
+
+                        </div>
+                    </section>
+
+
+                    <!-- Honors and Awards -->
+                    <section id="Honors and Awards" class="scroll-mt-24">
+                        <div class="section-header mb-2">
+                            <h2 class="text-3xl font-serif font-bold text-primary">Honors and Awards</h2>
+                        </div>
+                         <div class="title-divider"></div>
+                        <div id="news-container_honor" class="news-list space-y-4">
+                            <ul class="space-y-3 list-disc pl-5">
+                                <li><p>[2025-11] Jiangxi International Corporation Scholarship (Top 5 University-wide).</p></li>
+                                <li><p>[2025-10] Academic Pacemaker (Top 15 University-wide).</p></li>
+                                <li><p>[2025-09] National Scholarship for Postgraduates.</p></li>
+                            </ul>
+
+                        </div>
+                    </section>
+
+
+                    <!-- Academic Service -->
+                    <section id="Academic Service" class="scroll-mt-24">
+                        <div class="section-header mb-2">
+                            <h2 class="text-3xl font-serif font-bold text-primary">Academic Service</h2>
+                        </div>
+                         <div class="title-divider"></div>
+                        <div id="news-container_acade" class="news-list space-y-4">
+
+                            <h3 class="text-xl font-serif font-bold text-primary">Reviewer for Journals:</h3>
+                                <ul  class="space-y-3 list-disc pl-5">
+                                  <li><p>Engineering Applications of Artificial Intelligence (EAAI)</p></li>
+                                </ul>
+<!--                            <h3 class="text-xl font-serif font-bold text-primary">Reviewer for Conference:</h3>-->
+<!--                                <ul class="space-y-3 list-disc pl-5">-->
+<!--                                <li><p>International Joint Conference on Neural Networks (IJCNN)</p></li>-->
+<!--                                </ul>-->
+                        </div>
+                    </section>
+
+
+
+                    <!-- Research Thrust Section -->
+                    <section id="research-thrust" class="scroll-mt-24">
+                        <div class="section-header mb-2">
+                            <h2 class="text-3xl font-serif font-bold text-primary">My Desk</h2>
+                        </div>
+                         <div class="title-divider"></div>
+                        <div class="prose max-w-none text-neutral-600 text-justify formal-font">
+
+                            <p class="mb-6">Compilation of notes compiled from my research. Feel free to use them, and I hope they are helpful to you.</p>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="thrust-card bg-neutral-50 rounded-xl p-3 border border-neutral-100 hover:shadow-md transition-all duration-300 group flex flex-col h-full">
+                                    <h3 class="pl-2 font-serif font-bold text-lg text-primary mb-3 flex items-center transition-colors">
+<!--                                        <i class="fas fa-project-diagram text-accent mr-2 group-hover:scale-110 transition-transform"></i> TOOLS-->
+                                        TOOLS
+                                    </h3>
+                                    <div class="title-divider"></div>
+                                    <p class="text-sm leading-relaxed text-justify text-neutral-600 flex-grow">
+                                       <ul class="space-y-3 list-disc pl-5">
+                                            <li>
+                                                <a href="https://blog.csdn.net/Hinmouc/article/details/145692229" class="text-[1.1rem]  text-[#1772d0]  font-bold">
+                                                        LaTex: Symbol and Use
+                                                </a>
+                                            </li>
+                                       </ul>
+                                    </p>
+                                </div>
+
+                                <!-- Thrust 2 -->
+                                <div class="thrust-card bg-neutral-50 rounded-xl p-3 border border-neutral-100 hover:shadow-md transition-all duration-300 group flex flex-col h-full">
+                                    <h3 class="pl-2 font-serif font-bold text-lg text-primary mb-3 flex items-center transition-colors">
+<!--                                        <i class="fas fa-project-diagram text-accent mr-2 group-hover:scale-110 transition-transform"></i> TOOLS-->
+                                        PAPERS
+                                    </h3>
+                                    <div class="title-divider"></div>
+                                    <p class="text-sm leading-relaxed text-justify text-neutral-600 flex-grow">
+                                        <ul class="space-y-3 list-disc pl-5">
+                                            <li>
+                                                <a href="https://blog.csdn.net/Hinmouc/article/details/154433269" class="text-[1.1rem]  text-[#1772d0]  font-bold">
+                                                        Evaluate for Image Fusion
+                                                </a>
+                                            </li>
+
+                                       </ul>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+
+
+                    <!-- More about me -->
+                    <section id="More about me" class="scroll-mt-24">
+                        <div class="section-header mb-2">
+                            <h2 class="text-3xl font-serif font-bold text-primary">More about me</h2>
+                        </div>
+                         <div class="title-divider"></div>
+                        <div id="news-container_about" class="news-list space-y-4">
+                                <ul class="space-y-3 list-disc pl-5">
+                                    <li>love jogging, fitness…</li>
+                                    <li>a little singing</li>
+                                </ul>
+                        </div>
+                    </section>
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-neutral-200 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-neutral-500 text-sm">
+                &copy; 2026 hinmouc. All rights reserved. <br>
+                Powered by <a href="#" class="text-blue hover:text-accent-dark">hinmouc</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
