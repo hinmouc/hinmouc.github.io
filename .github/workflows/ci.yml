@@ -1,81 +1,47 @@
-name: Deploy Full Site (Resume + MkDocs)
-
+name: Deploy MkDocs to Desk  # 更改了工作流名称，更明确
 on:
   push:
     branches:
-      - main  # 当推送到 main 分支时触发
-    # 可选：路径过滤，只有以下路径变化才触发构建，提高效率
+      - master 
+      - main
     paths:
-      - 'Desk/**'          # Desk目录下的任何文档变更
-      - 'index.html'       # 简历主页变更
-      - 'styles.css'       # 简历样式变更
-      - 'script.js'        # 简历脚本变更
-      - 'assets/**'        # 简历资源变更
-      - '.github/workflows/**'  # 工作流自身变更
-
+      - 'Desk/**'
+      - '.github/workflows/**'  # 工作流自身变更时也触发
 permissions:
-  contents: write  # 允许工作流向 gh-pages 分支写入
-
+  contents: write
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      # 第一步：获取你的代码
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # 第二步：设置Python环境（用于MkDocs）
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
         with:
-          python-version: '3.x'
-          
-       # 新增关键步骤：验证 site_url 配置
-      - name: Validate MkDocs Config
-        working-directory: ./Desk
-        run: |
-          echo "正在检查 mkdocs.yml 关键配置..."
-          if ! grep -q "site_url: https://hinmouc.github.io/" mkdocs.yml; then
-            echo "错误: mkdocs.yml 中的 site_url 未正确设置为 'https://hinmouc.github.io/'"
-            exit 1
-          fi
-          echo "配置检查通过。"
-
-      # 第三步：安装MkDocs及所有插件（在Desk目录内操作）
-      - name: Install MkDocs and Plugins
-        working-directory: ./Desk  # 进入Desk目录
-        run: |
-          pip install mkdocs-material
-          # 以下是你原来的插件列表，保持安装
-          pip install mkdocs-git-revision-date-localized-plugin
-          pip install mkdocs-git-authors-plugin
-          pip install mkdocs-git-committers-plugin-2
-          pip install markdown-callouts
-          pip install mkdocs-rss-plugin
-          pip install pymdown-extensions
-          pip install --upgrade --force-reinstall mkdocs-material
-
-      # 第四步：构建MkDocs文档站点（输出到 Desk/site 文件夹）
-      - name: Build MkDocs Site
-        working-directory: ./Desk
-        run: mkdocs build
-
-      # 第五步（关键）：将根目录的简历文件复制到构建产物的根目录
-      - name: Copy Resume Files to Site Root
-        run: |
-          echo "正在将简历文件合并到发布包..."
-          # 复制简历的核心HTML、CSS、JS文件
-          cp ./index.html ./Desk/site/ 2>/dev/null || echo '提示：index.html 已处理。'
-          cp ./styles.css ./Desk/site/ 2>/dev/null || echo '提示：styles.css 已处理。'
-          cp ./script.js ./Desk/site/ 2>/dev/null || echo '提示：script.js 已处理。'
-          # 复制整个assets资源文件夹（如果存在）
-          cp -r ./assets ./Desk/site/ 2>/dev/null || echo '提示：assets 文件夹已处理。'
-          echo "简历文件合并完成。"
-
-      # 第六步（关键）：部署整个“Desk/site”文件夹到 gh-pages 分支的根目录
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+          fetch-depth: 0
+          sparse-checkout: |
+            docs
+            includes
+      - uses: actions/setup-python@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./Desk/site
-          keep_files: false
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-material-${ env.cache_id }
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs-git-revision-date-localized-plugin
+      - run: pip install mkdocs-git-authors-plugin
+      - run: pip install mkdocs-git-committers-plugin-2
+      - run: pip install markdown-callouts
+      # - run: pip install mkdocs-minify-plugin
+      - run: pip install mkdocs-rss-plugin
+      # - run: pip install jieba
+      # - run: pip install mkdocs-open-in-new-tab
+      - run: pip install pymdown-extensions
+      # - run: pip install mkdocs-glightbox
+      # - run: pip install "mkdocs-material[imaging]"
+      # - run: pip install mkdocs-statistics-plugin        
+      - run: pip install mkdocs-material 
+      - run: pip install --upgrade --force-reinstall mkdocs-material
+      - run: mkdocs gh-deploy --force
+
