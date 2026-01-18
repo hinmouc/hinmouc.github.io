@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Perceptual Transform Fusion of Infrared and Visible Images" />
+  <!-- Umami Analytics -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="f8608dac-ee79-41b7-b18d-a1bc9bc00cf8"></script>
+  <meta name="keywords" content="image fusion, low-level vision" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>PIVFusion</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍀</text></svg>" />
+
+  <style>
+    .button {
+      background-color: #4a4a4a;
+      color: white;
+      border-radius: 25px;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .button:hover {
+      background-color: #363636;
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .button:hover .icon {
+      transform: scale(1.2);
+      color: #ffffff;
+    }
+
+    .external-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+  .image-caption {
+    text-align: center;
+    font-size: 1rem;
+    color: #4a4a4a;
+    margin-top: 1rem;
+  }
+  section .title {
+    text-align: center; /* 将标题居中 */
+    margin-bottom: 20px; /* 可选：增加底部间距，让标题和内容有间隔 */
+  }
+
+  .color-section {
+	  background-color: #ffffff;
+	  padding: 3rem 1.5rem;
+	  border-top: 1px solid #e0e0e0;
+	}
+  .color-section-gray {
+	  background-color: #f9f9f9;
+	  padding: 3rem 1.5rem;
+	  border-top: 1px solid #e0e0e0;
+	}
+  </style>
+
+  <style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .gallery-item-1 {
+    width: 80%; /* 确保每个图片项占满父容器宽度 */
+    height: auto; /* 高度自适应 */
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background-color: white;
+	margin-left: auto;
+  	margin-right: auto;
+  }
+
+  .gallery-item-1:hover {
+    transform: scale(1.01);
+  }
+
+  .gallery-item {
+    width: 100%; /* 确保每个图片项占满父容器宽度 */
+    height: auto; /* 高度自适应 */
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background-color: white;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-5px);
+  }
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 300px; /* 可调 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.image-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* 两张图重叠 */
+.image-stack img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* 默认显示左图 */
+.image-left {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* 默认隐藏右图 */
+.image-right {
+  opacity: 0;
+  z-index: 2;
+}
+
+/* 悬停切换透明度 */
+.image-container:hover .image-left {
+  opacity: 0;
+}
+
+.image-container:hover .image-right {
+  opacity: 1;
+}
+  .image-caption-display {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #000000;
+    padding: 0.75rem;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .image-caption {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #000000;
+    padding: 0.75rem;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+    border-radius: 0 0 16px 16px;
+	display: none
+  }
+</style>
+
+  <style>
+  .abstract-box {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 1.75;
+    font-size: 1.1rem;
+    color: #333;
+    transition: transform 0.3s ease;
+  }
+
+  .abstract-box:hover {
+    transform: scale(1.01);
+  }
+
+  .abstract-box p {
+    margin-bottom: 1rem;
+  }
+
+  .abstract-highlight {
+    color: #1e88e5;
+    font-weight: 600;
+  }
+
+  .abstract-section h2.title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+</style>
+
+  <!-- google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/bulma.min.css" />
+  <link rel="stylesheet" href="css/bulma-carousel.min.css" />
+  <link rel="stylesheet" href="css/bulma-slider.min.css" />
+  <link rel="stylesheet" href="css/twentytwenty.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/jquery.event.move.js"></script>
+  <script src="js/jquery.twentytwenty.js"></script>
+  <script src="js/bulma-carousel.min.js"></script>
+  <script src="js/bulma-slider.min.js"></script>
+  <script src="js/fontawesome.all.min.js"></script>
+
+  <!--MathJax for Equations-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+      },
+      svg: {
+        fontCache: "global",
+      },
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+<!--            <h2 class="title is-2 publication-title">🌐 PIVFusion 🌐</h2>-->
+            <h1 class="title is-1 publication-title">
+              Perceptual Transform Fusion of Infrared and Visible Images
+            </h1>
+             <h3 class="title is-3">TCSVT 2025</h3>
+
+            <!-- Authors -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                  Dingli Hua<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://hinmouc.github.io/" rel="noopener noreferrer">
+                  Qingmao Chen</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                  Zhiliang Wu<sup>2</sup>,
+              </span>
+              <span class="author-block">
+                  Yifan Zuo<sup>1</sup>,
+              </span>
+              <br />
+              <span class="author-block">
+                  Wenying Wen<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                  Yuming Fang<sup>1</sup>,
+              </span>
+            </div>
+            <!-- Affiliations -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>&nbsp;Jiangxi University of Finance and Economics.</span>&nbsp;
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>2</sup>&nbsp;CCAI, Zhejiang University.</span>&nbsp;
+            </div>
+            <!-- Buttons -->
+            <div class="column has-text-centered">
+              <!-- Paper Link. -->
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://ieeexplore.ieee.org/document/11078301" rel="noopener noreferrer"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/hinmouc/PIVFusion" rel="noopener noreferrer"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="static-gallery">
+          <div class="abstract-box">
+            <img class="small-image" src="image/visual_Rplot4.png" alt="Framework Image 2"/>
+          </div>
+          <h2 class="subtitle has-text-centered">
+            <br>
+            Quantitative comparison of <b>PIVFusion</b> with <b>SOTA</b> in four datasets.
+        </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light abstract-section">
+  <div class="container is-max-desktop">
+    <h2 class="title">Abstract</h2>
+      <div class="abstract-box">
+        <p>
+        <span class="abstract-highlight">Infrared and visible image fusion</span> aims to generate fused images with rich textures and clear target representations.
+        Existing methods generally assume high-quality input images, thus overlooking issues such as reduced contrast and loss of details in visible images under low-light conditions.
+        The naive enhance-then-fuse strategy cannot perform fuse-oriented image enhancement, which always reaches a sub-optimal result.
+        To address this challenge, we propose a perceptual transform fusion of infrared and visible images, which simultaneously optimizes low-light enhancement and image fusion.
+        Specifically, to improve computational efficiency and optimize key feature representations while suppressing noise interactions caused by lighting variations, we introduce a lightweight adaptive sparse Transformer block (ASTBlock).
+        This model adaptively integrates sparse and dense attention mechanisms to enhance feature representations and employs a feed-forward network to eliminate redundant information, thereby ensuring the quality of image fusion.
+        Subsequently, to retain significant details while reducing the impact of noise introduced by low-light enhancement, we incorporate discrete wavelet transform (DWT) for feature decomposition and fusion, further enhancing the representation capability and feature preservation of fused images.
+        Meanwhile, to tackle the issues of insufficient contrast and hidden details in low-light conditions, we design an illumination perception module and an illumination consistency loss to improve the contrast and clarity of fused images.
+        Experimental results on multiple public benchmark datasets for quality assessment and downstream tasks, e.g., pedestrian detection, demonstrate that our method significantly
+        outperforms the state-of-the-art (SOTA) methods.
+        </p>
+      </div>
+    </div>
+  </section>
+<!-- End paper abstract -->
+
+
+
+  <section class="section pt-0">
+    <div class="container is-max-desktop has-text-centered">
+      <div class="hero-body">
+        <h2 class="title has-text-centered">
+          How PIVFusion Works
+        </h2>
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="pipleline" width="100%" src="image/pipleline_0409.png" alt="VF-Bench Gallery Image" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop has-text-centered">
+      <div class="hero-body">
+        <h2 class="title has-text-centered">
+           Quantitative comparison with other methods
+        </h2>
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <div class="abstract-box">
+          <img id="comparison" width="100%" src="image/table_compare.png" alt="VF-Bench Gallery Image" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+    <section class="section pt-0">
+    <div class="container is-max-desktop has-text-centered">
+      <div class="hero-body">
+        <h2 class="title has-text-centered">
+          Visual comparison in LLVIP
+        </h2>
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="1231" width="100%" src="image/visual_LLVIP_010101.png" alt="VF-Bench Gallery Image" />
+        </div>
+
+        <h2 class="subtitle has-text-centered">
+             Number <b>'010101'</b> in LLVIP dataset.
+        </h2>
+
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="1231" width="100%" src="image/visual_LLVIP_040152.png" alt="VF-Bench Gallery Image" />
+        </div>
+
+        <h2 class="subtitle has-text-centered">
+            Number <b>'040152'</b> in LLVIP dataset.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+
+    <section class="section hero is-light">
+    <div class="container is-max-desktop has-text-centered">
+      <div class="hero-body">
+        <h2 class="title has-text-centered">
+          Visual comparison in MSRS
+        </h2>
+
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="1231" width="100%" src="image/visual_MSRS_00004N.png" alt="VF-Bench Gallery Image" />
+        </div>
+
+        <h2 class="subtitle has-text-centered">
+            Number <b>'00004N'</b> in MSRS dataset.
+        </h2>
+
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="1231" width="100%" src="image/visual_MSRS_01574D.png" alt="VF-Bench Gallery Image" />
+        </div>
+
+        <h2 class="subtitle has-text-centered">
+            Number <b>'01574D'</b> in MSRS dataset.
+        </h2>
+
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="1231" width="100%" src="image/visual_MSRS_01493D.png" alt="VF-Bench Gallery Image" />
+        </div>
+
+        <h2 class="subtitle has-text-centered">
+            Number <b>'01493D'</b> in MSRS dataset.
+        </h2>
+
+      </div>
+    </div>
+  </section>
+
+
+
+    <section class="section pt-0">
+    <div class="container is-max-desktop has-text-centered">
+      <div class="hero-body">
+        <h2 class="title has-text-centered">
+          Visual comparison in TNO & M3FD
+        </h2>
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="1231" width="100%" src="image/visual_TNO_1.png" alt="VF-Bench Gallery Image" />
+        </div>
+
+        <h2 class="subtitle has-text-centered">
+           <b>TNO</b> dataset.
+        </h2>
+
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="1231" width="100%" src="image/visual_M3FD_00421.png" alt="VF-Bench Gallery Image" />
+        </div>
+
+        <h2 class="subtitle has-text-centered">
+            Number <b>'00421'</b> in M3FD dataset.
+        </h2>
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <script>
+    $(window).on("load", function () {
+      bulmaCarousel.attach("#results-carousel-teaser", {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        autoplay: true,
+      });
+
+      bulmaCarousel.attach("#results-carousel-horizontal", {
+        slidesToScroll: 1,
+        slidesToShow: 5,
+        loop: true,
+        autoplay: true,
+      });
+
+      $(".twentytwenty-container-top").twentytwenty({
+        before_label: "Input",
+        after_label: "Ours",
+        default_offset_pct: 0.75,
+      });
+
+      $(".twentytwenty-container-bottom").twentytwenty({
+        before_label: "LeRes",
+        after_label: "Ours",
+        default_offset_pct: 0.5,
+      });
+
+      $(".results-carousel").css({
+        "max-height": "2000px",
+        visibility: "visible",
+      });
+    });
+  </script>
+
+
+  <br>
+  <section class="section pt-0" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Citation</h2>
+      <pre class="selectable">
+        <code>
+        @ARTICLE{2025Pivfusion,
+          author={Hua, Dingli and Chen, Qingmao and Wu, Zhiliang and Zuo, Yifan and Wen, Wenying and Fang, Yuming},
+          title={Perceptual Transform Fusion of Infrared and Visible Images},
+          journal={IEEE Transactions on Circuits and Systems for Video Technology},
+          year={2025}
+        }
+      </code>
+
+</pre>
+    </div>
+  </section>
+
+
+  <footer class="footer pt-4 pb-0">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              Website template based on
+              <a href="https://github.com/nerfies/nerfies.github.io">
+                Nerfies
+              </a>
+              and licensed under
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                CC-BY-SA-4.0</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
