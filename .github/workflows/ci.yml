@@ -29,6 +29,17 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          
+       # 新增关键步骤：验证 site_url 配置
+      - name: Validate MkDocs Config
+        working-directory: ./Desk
+        run: |
+          echo "正在检查 mkdocs.yml 关键配置..."
+          if ! grep -q "site_url: https://hinmouc.github.io/" mkdocs.yml; then
+            echo "错误: mkdocs.yml 中的 site_url 未正确设置为 'https://hinmouc.github.io/'"
+            exit 1
+          fi
+          echo "配置检查通过。"
 
       # 第三步：安装MkDocs及所有插件（在Desk目录内操作）
       - name: Install MkDocs and Plugins
@@ -66,8 +77,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # 发布源：包含了“简历”和“文档”的完整文件夹
           publish_dir: ./Desk/site
-          # 目标：gh-pages 分支的根目录（这样简历才能在根路径访问）
-          # 重要：这里没有设置 destination_dir，表示部署到根目录
-          keep_files: false  # 部署前清理目标目录，保持干净
+          keep_files: false
