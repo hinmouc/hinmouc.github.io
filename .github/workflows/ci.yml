@@ -1,15 +1,12 @@
-name: Deploy Resume and Docs
+name: Deploy Complete Site
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'Desk/**'
-      - 'index.html'
-      - 'styles.css'
-      - 'script.js'
-      - 'assets/**'
       - '.github/workflows/**'
+      - 'Desk/**'               
+      - 'index.html'           
 
 permissions:
   contents: write
@@ -18,17 +15,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # 第一步：检出代码
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 第二步：设置Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # 第三步：安装MkDocs及插件
       - name: Install Dependencies
         working-directory: ./Desk
         run: |
@@ -40,33 +34,37 @@ jobs:
           pip install mkdocs-rss-plugin
           pip install pymdown-extensions
 
-      # 第四步：构建MkDocs到临时目录 desk_temp
       - name: Build MkDocs to Temporary Directory
         working-directory: ./Desk
         run: |
-          # 关键：构建到 desk_temp 目录，让所有内部链接据此生成
           mkdocs build --site-dir desk_temp
 
-      # 第五步：准备最终发布目录结构
       - name: Prepare Final Site Structure
         run: |
           # 1. 创建最终输出目录 Desk/site
           mkdir -p ./Desk/site
-          # 2. 将构建好的文档站从 desk_temp 移动到 Desk/site/desk
+          # 2. 将构建好的文档站移动到 Desk/site/desk
           mv ./Desk/desk_temp ./Desk/site/desk
-          # 3. 将简历文件复制到 Desk/site 的根目录
-          cp ./index.html ./Desk/site/ 2>/dev/null || echo 'Info: Copied index.html'
-          cp ./styles.css ./Desk/site/ 2>/dev/null || echo 'Info: Copied styles.css'
-          cp ./script.js ./Desk/site/ 2>/dev/null || echo 'Info: Copied script.js'
-          cp -r ./assets ./Desk/site/ 2>/dev/null || echo 'Info: Copied assets folder'
-          echo "最终发布结构准备完毕。"
+          
+          echo “开始同步根目录所有文件到发布目录...”
+          # *** 修改点 2：使用 rsync 同步整个根目录 ***
+          # 原因：原来的 cp 命令只复制了明确列出的几个简历文件，无法满足
+          #       “自动包含其他项目（如 PIVFusion）”的需求。
+          # 作用：此命令将仓库根目录下所有内容（除排除项外）同步到 Desk/site/，
+          #       实现您的需求1（简历文件）和需求3（其他项目）。
+          rsync -av \
+            --exclude='.git' \       # 排除版本控制目录
+            --exclude='.github' \    # 排除 CI 配置目录
+            --exclude='Desk' \       # 排除 MkDocs 源码目录，因其产物已在 desk 文件夹内
+            --exclude='Desk/site' \  # 排除目标目录自身，防止循环
+            ./ \
+            ./Desk/site/
+          
+          echo “同步完成。最终发布结构已准备完毕。”
 
-      # 第六步：部署到GitHub Pages根目录
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # 发布源：包含了简历（根目录）和文档站(/desk)的完整文件夹
           publish_dir: ./Desk/site
-          # 不指定 destination_dir，即部署到 gh-pages 分支的根目录
           keep_files: false
