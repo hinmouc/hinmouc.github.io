@@ -5,8 +5,8 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/**'
-      - 'Desk/**'               
-      - 'index.html'           
+      - 'Desk/**'
+      - 'index.html'
 
 permissions:
   contents: write
@@ -41,26 +41,24 @@ jobs:
 
       - name: Prepare Final Site Structure
         run: |
-          # 1. 创建最终输出目录 Desk/site
+          # 1. 创建最终输出目录
           mkdir -p ./Desk/site
-          # 2. 将构建好的文档站移动到 Desk/site/desk
+          # 2. 移动文档站到子目录
           mv ./Desk/desk_temp ./Desk/site/desk
           
-          echo “开始同步根目录所有文件到发布目录...”
-          # *** 修改点 2：使用 rsync 同步整个根目录 ***
-          # 原因：原来的 cp 命令只复制了明确列出的几个简历文件，无法满足
-          #       “自动包含其他项目（如 PIVFusion）”的需求。
-          # 作用：此命令将仓库根目录下所有内容（除排除项外）同步到 Desk/site/，
-          #       实现您的需求1（简历文件）和需求3（其他项目）。
-          rsync -av \
-            --exclude='.git' \       # 排除版本控制目录
-            --exclude='.github' \    # 排除 CI 配置目录
-            --exclude='Desk' \       # 排除 MkDocs 源码目录，因其产物已在 desk 文件夹内
-            --exclude='Desk/site' \  # 排除目标目录自身，防止循环
-            ./ \
-            ./Desk/site/
+          echo "开始同步根目录所有文件到发布目录..."
           
-          echo “同步完成。最终发布结构已准备完毕。”
+          # 3. 【核心修正】使用 find 和 cp 命令代替 rsync，兼容性更好
+          # 原理：复制当前目录(.)下所有文件和文件夹，排除指定的几个
+          find . -maxdepth 1 \
+            -not -name '.' \
+            -not -name '.git' \
+            -not -name '.github' \
+            -not -name 'Desk' \
+            -not -name 'Desk/site' \
+            -exec cp -r {} ./Desk/site/ \;
+          
+          echo "同步完成。最终发布结构已准备完毕。"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
