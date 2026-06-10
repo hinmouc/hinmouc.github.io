@@ -5,22 +5,67 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up MutationObserver to watch for dynamically added links
     setupLinkObserver();
 
-    // Mobile Menu Toggle
+    // Responsive menu interactions
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     
     if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        let closeTimer;
+        const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+        const isMenuOpen = () => !mobileMenu.classList.contains('hidden');
+
+        const openMenu = () => {
+            clearTimeout(closeTimer);
+            mobileMenu.classList.remove('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        };
+
+        const closeMenu = () => {
+            clearTimeout(closeTimer);
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        };
+
+        const scheduleCloseMenu = () => {
+            clearTimeout(closeTimer);
+            closeTimer = setTimeout(closeMenu, 180);
+        };
+
+        mobileMenuBtn.addEventListener('click', event => {
+            event.stopPropagation();
+            isMenuOpen() ? closeMenu() : openMenu();
         });
+
+        if (supportsHover.matches) {
+            mobileMenuBtn.addEventListener('mouseenter', openMenu);
+            mobileMenuBtn.addEventListener('mouseleave', scheduleCloseMenu);
+            mobileMenu.addEventListener('mouseenter', openMenu);
+            mobileMenu.addEventListener('mouseleave', scheduleCloseMenu);
+        }
 
         // Close menu when a link is clicked
         const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        document.addEventListener('click', event => {
+            const clickedMenuControl = mobileMenuBtn.contains(event.target);
+            const clickedMenuContent = mobileMenu.contains(event.target);
+
+            if (isMenuOpen() && !clickedMenuControl && !clickedMenuContent) {
+                closeMenu();
+            }
         });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && isMenuOpen()) {
+                closeMenu();
+                mobileMenuBtn.focus();
+            }
+        });
+
+        window.addEventListener('scroll', closeMenu, { passive: true });
+        window.addEventListener('resize', closeMenu);
     }
     
     // Load publications data from JSON file
