@@ -7,6 +7,7 @@ on:
       - '.github/workflows/**'
       - 'Desk/**'
       - 'index.html'
+      - 'styles.css'
 
 permissions:
   contents: write
