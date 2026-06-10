@@ -149,8 +149,8 @@ section {
     align-items: start;
 }
 
-/* Keep the existing two-column composition on desktop screens. */
-@media (min-width: 1024px) {
+/* Keep the existing two-column composition on desktop-sized screens. */
+@media (min-width: 900px) {
     .grid-layout {
         grid-template-columns: 240px minmax(0, 1fr);
         gap: clamp(2rem, 4vw, 4rem);
@@ -159,12 +159,10 @@ section {
 
     .profile-column {
         width: 240px;
-    }
-
-    .profile-card {
         position: sticky;
         top: 6rem;
         align-self: start;
+        height: fit-content;
     }
 }
 
@@ -187,14 +185,15 @@ section {
     }
 }
 
-/* Match the layout breakpoint with Tailwind's lg navigation breakpoint. */
-@media (max-width: 1023px) {
+/* Stack the profile and content on narrow screens. */
+@media (max-width: 899px) {
     .grid-layout {
         gap: 2.25rem;
     }
 
     .profile-column {
         width: 100%;
+        position: static;
     }
 
     .profile-card {
