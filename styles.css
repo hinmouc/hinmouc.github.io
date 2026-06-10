@@ -218,6 +218,15 @@ section {
     height: auto;
 }
 
+/* Short publication entries stay centered; wrapped titles align to the top. */
+#news-container_pub td {
+    vertical-align: middle;
+}
+
+#news-container_pub tr.publication-align-top td {
+    vertical-align: top;
+}
+
 /* Stack publication image and details only when the viewport is narrow. */
 @media (max-width: 767px) {
     #news-container_pub table {

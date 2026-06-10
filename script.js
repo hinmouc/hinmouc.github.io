@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load publications data from JSON file
     loadPublications();
+
+    // Align longer publication entries to the image top based on title wrapping.
+    setupPublicationAlignment();
     
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -137,6 +140,32 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error loading honors data:', error);
         });
 });
+
+function setupPublicationAlignment() {
+    const updateAlignment = () => {
+        const rows = document.querySelectorAll('#news-container_pub tr');
+
+        rows.forEach(row => {
+            const titleLink = row.querySelector('td:nth-child(2) > span > a');
+            const titleLineCount = titleLink ? titleLink.getClientRects().length : 0;
+            const shouldAlignTop = window.innerWidth >= 768 && titleLineCount > 1;
+
+            row.classList.toggle('publication-align-top', shouldAlignTop);
+        });
+    };
+
+    let resizeFrame;
+    window.addEventListener('resize', () => {
+        cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(updateAlignment);
+    });
+
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(updateAlignment);
+    } else {
+        updateAlignment();
+    }
+}
 
 // Function to load publications from JSON
 function loadPublications() {
