@@ -160,10 +160,12 @@ section {
     .profile-column {
         width: 240px;
     }
-}
 
-.profile-card {
-    position: static;
+    .profile-card {
+        position: sticky;
+        top: 6rem;
+        align-self: start;
+    }
 }
 
 .content-column {
