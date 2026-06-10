@@ -100,6 +100,10 @@ body {
     z-index: 10;
 }
 
+.research-interests-summary {
+    display: none;
+}
+
 /* Section Styling */
 section {
     position: relative;
@@ -199,6 +203,20 @@ section {
     .profile-card {
         max-width: 640px;
         margin-inline: auto;
+    }
+
+    .research-interests-summary {
+        display: block;
+        max-width: 520px;
+        margin: 1rem auto 0;
+        color: #64748b;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.7;
+    }
+
+    .research-interests-card {
+        display: none;
     }
 
     .profile-image-container {
@@ -432,7 +450,7 @@ details summary {
 }
 
 .pub-line-2 {
-    font-size: 0.95rem;
+        font-size: 1rem;
     color: #4b5563; /* neutral-600 */
     margin-bottom: 0.1rem;
 }
