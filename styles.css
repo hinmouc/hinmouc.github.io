@@ -13,6 +13,11 @@
 }
 
 /* Base Styles */
+html {
+    /* Keep typography stable while allowing a subtle response to viewport width. */
+    font-size: clamp(15px, calc(14.25px + 0.13vw), 16px);
+}
+
 body {
     font-family: 'Inter', sans-serif;
     /*color: #0f172a; !* slate-900 *!*/
@@ -23,6 +28,20 @@ body {
 .date-font {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace; /* 更美观的等宽字体 */
   letter-spacing: 0; /* 强制字符间距为0，彻底消除间距差异 */
+}
+
+/* Keep dated list content aligned regardless of the digits in the date. */
+.dated-entry {
+    display: grid;
+    grid-template-columns: 5.7rem minmax(0, 1fr);
+    column-gap: 0.35rem;
+    align-items: baseline;
+}
+
+.date-label {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
 }
 
 /*!* Typography Overrides *!*/
@@ -127,27 +146,97 @@ section {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    align-items: start;
 }
 
-/*调整个人栏的宽度*/
-/*@media (min-width: 1024px) {*/
-/*    .grid-layout {*/
-/*        grid-template-columns: 240px 1fr;*/
-/*        gap: 3rem;*/
-/*        align-items: start;*/
-/*    }*/
-/*}*/
-
-@media (min-width: 1024px) {
+/* Keep the profile column stable on desktop and medium-width screens. */
+@media (min-width: 900px) {
     .grid-layout {
-        grid-template-columns: 240px 1fr;
-        gap: 4rem;
-        /* 修改1：将 align-items: start 改为 stretch */
-        align-items: stretch; /* 确保两列都拉伸到相同高度 */
-        /* 添加2：为网格容器设置最小高度 */
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: clamp(2rem, 4vw, 4rem);
         min-height: calc(100vh - 7rem); /* 减去顶栏和页脚的大致高度 */
     }
 
+    .profile-column {
+        width: 240px;
+    }
+}
+
+.profile-card {
+    position: static;
+}
+
+.content-column {
+    min-width: 0;
+}
+
+.content-column > section + section {
+    margin-top: clamp(2.25rem, 4vw, 3rem) !important;
+}
+
+/* Soften the transition between wide desktop and narrower layouts. */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .nav-links > :not([hidden]) ~ :not([hidden]) {
+        margin-left: 1.25rem !important;
+    }
+
+    .nav-links a {
+        font-size: 1.05rem !important;
+    }
+}
+
+@media (max-width: 899px) {
+    .grid-layout {
+        gap: 2.25rem;
+    }
+
+    .profile-column {
+        width: 100%;
+    }
+
+    .profile-card {
+        max-width: 640px;
+        margin-inline: auto;
+    }
+
+    .profile-image-container {
+        max-width: 160px !important;
+    }
+
+    .section-header h2 {
+        font-size: 1.65rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .dated-entry {
+        grid-template-columns: 5.45rem minmax(0, 1fr);
+        column-gap: 0.25rem;
+    }
+
+    #news-container_pub table,
+    #news-container_pub tbody,
+    #news-container_pub tr,
+    #news-container_pub td {
+        display: block;
+        width: 100% !important;
+    }
+
+    #news-container_pub tr + tr {
+        margin-top: 1.5rem;
+    }
+
+    #news-container_pub td {
+        padding: 0.35rem 0;
+    }
+
+    #news-container_pub td:first-child img {
+        display: block;
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        margin: 0 auto 0.5rem;
+    }
 }
 
 
